@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "clubsports"
+  site-url: "https://aliceheiman.github.io/clubsports"
+  description: "Python package for building Stanford Club Sports websites"
+  repo-branch: main
+  repo-url: "https://github.com/aliceheiman/clubsports"
