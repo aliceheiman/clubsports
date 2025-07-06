@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "clubsports",
+    "section": "",
+    "text": "This Python package simplifies Club Sport web management by allowing the Club Sport website to be the ground truth of information, with additional web apps able to parse data from it. See the documentation for supported functionality.",
+    "crumbs": [
+      "clubsports"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "clubsports",
+    "section": "Installation",
+    "text": "Installation\n$ pip install clubsports",
+    "crumbs": [
+      "clubsports"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "clubsports",
+    "section": "Usage",
+    "text": "Usage\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "clubsports"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "clubsports",
+    "section": "How to use",
+    "text": "How to use\nLet’s say we want to fetch information about the Stanford Cycling Team.\n\nfrom clubsports.pipe import get_roster, get_stories\n\n\nroster_url = \"https://stanfordclubsports.com/sports/cycling/roster/\"\nget_roster(roster_url)[0]\n\n{'title': 'Head Coach',\n 'name': 'Adrian Bennett',\n 'profile_url': 'https://stanfordclubsports.com/sports/cycling/roster/coaches/adrian-bennett/255'}\n\n\n\nhome_url = \"https://stanfordclubsports.com/sports/cycling/\"\nget_stories(home_url)[0]\n\n{'title': '2025 USA Cycling Collegiate Road National Championships',\n 'date': '2025-07-05T16:01:00',\n 'story_url': 'https://stanfordclubsports.com/news/2025/7/5/2025-usa-cycling-collegiate-road-national-championships.aspx',\n 'image_url': 'https://stanfordclubsports.com/images/2025/7/5/nationals.jpg',\n 'teaser': 'May 2-4, 2025'}",
+    "crumbs": [
+      "clubsports"
+    ]
+  },
+  {
+    "objectID": "pipe.html",
+    "href": "pipe.html",
+    "title": "pipe",
+    "section": "",
+    "text": "source\n\nget_roster\n\n get_roster (roster_url:str)\n\nGet a formatted Club Sports roster\nLet’s try out this function with the Stanford Cycling team.\n\nroster_url = \"https://stanfordclubsports.com/sports/cycling/roster/\"\nget_roster(roster_url)[0]\n\n{'title': 'Head Coach',\n 'name': 'Adrian Bennett',\n 'profile_url': 'https://stanfordclubsports.com/sports/cycling/roster/coaches/adrian-bennett/255'}\n\n\n\nsource\n\n\nget_staff\n\n get_staff (staff_url:str)\n\nGet and format Club Sport staff\nLet’s try this with the Stanford Cycling Team staff:\n\nstaff_url = \"https://stanfordclubsports.com/sports/cycling/coaches\"\nget_staff(staff_url)[3]\n\n{'name': 'George Wehner',\n 'profile_url': 'https://stanfordclubsports.com/sports/cycling/roster/staff/george-wehner/18',\n 'title': 'President',\n 'email_address': 'gtwehner@stanford.edu',\n 'phone': ''}\n\n\n\nsource\n\n\nget_academic_year\n\n get_academic_year ()\n\nHelper to get the academic year\n\nget_academic_year()\n\n'2024-25'\n\n\n\nsource\n\n\nget_schedule\n\n get_schedule (schedule_url:str, season:str=None, naive=False)\n\nGet and parse a club sport schedule table.\nLet’s try this out for the cycling schedule 2022-2023 season. This is the actual table from the Stanford Club Sports website:\n\n\n\nStanford Cycling Season 2022-23 Schedule\n\n\nNow we fetch the schedule and display the second row:\n\nschedule = get_schedule(\"https://stanfordclubsports.com/sports/cycling/schedule\", \"2022-23\")\nschedule[1]\n\n{'date': 'October 30, 2022 (Sunday)',\n 'time': '',\n 'at': 'Away',\n 'opponent': 'Surf City Cyclocross',\n 'location': 'Santa Cruz, CA',\n 'tv': '',\n 'radio': '',\n 'result': '4 Riders with Top 10 finishes',\n 'links': 'https://cyclo-x.com/results'}\n\n\nNotice the links field. It actually fetched the link. If we want to just get the cell contents, we can set naive=True.\n\nschedule = get_schedule(\"https://stanfordclubsports.com/sports/cycling/schedule\", \"2022-23\", naive=True)\nschedule[1][\"links\"]\n\n'Event Results'\n\n\n\nsource\n\n\nget_stories\n\n get_stories (home_url:str)\n\nGet story blurbs from Club Sports website\nLet’s try with a few different teams, like Stanford Cycling and Women’s Rugby.\n\nhome_url = \"https://stanfordclubsports.com/sports/cycling\"\nget_stories(home_url)[:2]\n\n[{'title': '2025 USA Cycling Collegiate Road National Championships',\n  'date': '2025-07-05T16:01:00',\n  'story_url': 'https://stanfordclubsports.com/news/2025/7/5/2025-usa-cycling-collegiate-road-national-championships.aspx',\n  'image_url': 'https://stanfordclubsports.com/images/2025/7/5/nationals.jpg',\n  'teaser': 'May 2-4, 2025'}]\n\n\n\nhome_url = \"https://stanfordclubsports.com/sports/womens-rugby\"\nget_stories(home_url)[:2]\n\n[{'title': \"Stanford Women's Rugby Crowned CRAA Challenger 7s National Champions\",\n  'date': '2025-05-03T18:40:00',\n  'story_url': 'https://stanfordclubsports.com/news/2025/5/3/stanford-womens-rugby-crowned-craa-challenger-7s-national-champions.aspx',\n  'image_url': 'https://stanfordclubsports.com/images/2025/5/4/Natty_7s_SWR.jpeg',\n  'teaser': 'May 3, 2025'},\n {'title': \"Stanford Women's Rugby Advance to the Semi Finals in the CRAA 7s National Championship\",\n  'date': '2025-05-02T20:54:00',\n  'story_url': 'https://stanfordclubsports.com/news/2025/5/2/stanford-womens-rugby-advance-to-the-semi-finals-in-the-craa-7s-national-championship.aspx',\n  'image_url': 'https://stanfordclubsports.com/images/2025/4/5/0J5A4952_copy.jpg',\n  'teaser': 'May 2, 2025'}]",
+    "crumbs": [
+      "pipe"
+    ]
+  }
+]
